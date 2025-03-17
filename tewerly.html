@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tewerly - Puzzle de Ciberseguridad</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="tewerly.css">
+</head>
+<body>
+    <!-- Retro effects -->
+    <div class="scanlines"></div>
+    <div class="crt-effect"></div>
+    
+    <div class="container">
+        <!-- Header -->
+        <header class="game-header">
+            <h1 class="game-title">TEWERLY</h1>
+            <p class="game-subtitle">Un puzzle de ciberseguridad</p>
+        </header>
+        
+        <!-- Main Menu Screen -->
+        <div id="main-menu" class="main-menu">
+            <button id="start-btn" class="menu-btn">
+                JUGAR <span id="continue-text"></span>
+            </button>
+            <button id="story-mode-btn" class="menu-btn">MODO HISTORIA</button>
+            <button id="info-btn" class="menu-btn">CIBERSEGURIDAD</button>
+            <button id="leaderboard-btn" class="menu-btn">PUNTUACIONES</button>
+            <div class="username-form">
+                <input type="text" id="username-input" class="username-input" placeholder="Ingresa tu nombre" maxlength="15">
+                <button id="save-username-btn" class="save-btn">GUARDAR</button>
+            </div>
+            <div id="player-welcome" class="player-welcome"></div>
+        </div>
+        
+        <!-- Game Screen -->
+        <div id="game-screen" class="game-screen">
+            <button id="game-back-btn" class="back-btn">
+                <i class="fas fa-arrow-left"></i> VOLVER
+            </button>
+            
+            <div class="game-info">
+                <div class="game-stat">
+                    AGENTE: <span id="player-name-display">Anónimo</span>
+                </div>
+                <div class="game-stat">
+                    NIVEL: <span id="level-display">1</span>
+                </div>
+                <div class="game-stat">
+                    TIEMPO: <span id="timer-display">3:00</span>
+                </div>
+                <div class="game-stat">
+                    PUNTAJE: <span id="score-display">0</span>
+                </div>
+            </div>
+            
+            <canvas id="game-canvas"></canvas>
+            
+            <div class="game-controls">
+                <button id="left-btn" class="control-btn">
+                    <i class="fas fa-arrow-left"></i>
+                </button>
+                <button id="rotate-btn" class="control-btn">
+                    <i class="fas fa-redo"></i>
+                </button>
+                <button id="right-btn" class="control-btn">
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+                <button id="down-btn" class="control-btn">
+                    <i class="fas fa-arrow-down"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Story Mode Screen -->
+        <div id="story-screen" class="story-screen">
+            <button id="story-back-btn" class="back-btn">
+                <i class="fas fa-arrow-left"></i> VOLVER
+            </button>
+            
+            <div class="story-container">
+                <h2 class="story-title">La Amenaza Digital</h2>
+                
+                <div class="story-episode">
+                    <h3 class="episode-title">Episodio 1: El Despertar</h3>
+                    <div class="story-content">
+                        <p>En el año 2035, el mundo depende completamente de sistemas digitales interconectados. La Agencia de Ciberseguridad Global (ACG) es la última línea de defensa contra amenazas digitales.</p>
+                        <p>Tú eres un nuevo recluta con habilidades excepcionales para resolver puzzles de código. Tu misión comienza cuando un misterioso ataque bloquea los sistemas de energía de la ciudad.</p>
+                        <p>Debes utilizar tus habilidades para reorganizar fragmentos de código y restaurar el sistema antes de que el tiempo se agote.</p>
+                    </div>
+                    <button class="play-episode-btn" data-level="1">JUGAR EPISODIO 1</button>
+                </div>
+                
+                <div class="story-episode">
+                    <h3 class="episode-title">Episodio 2: Siguiendo el Rastro</h3>
+                    <div class="story-content">
+                        <p>Tras tu éxito inicial, la ACG ha identificado al grupo responsable: "Los Fantasmas Digitales", hacktivistas que buscan exponer vulnerabilidades en los sistemas críticos.</p>
+                        <p>Han dejado una serie de pistas codificadas que debes descifrar. Cada bloque que colocas correctamente revela fragmentos de su próximo objetivo.</p>
+                        <p>El tiempo corre mientras intentas reconstruir su mensaje antes del próximo ataque.</p>
+                    </div>
+                    <button class="play-episode-btn" data-level="2">JUGAR EPISODIO 2</button>
+                </div>
+                
+                <div class="story-episode">
+                    <h3 class="episode-title">Episodio 3: La Infiltración</h3>
+                    <div class="story-content">
+                        <p>Los Fantasmas Digitales han accedido a la base de datos nacional. Tu jefe, la Comandante Silva, te asigna una misión de infiltración digital.</p>
+                        <p>Usando una interfaz especial, debes navegar por su sistema defensivo, representado como bloques de código que debes manipular hábilmente.</p>
+                        <p>Cada línea completada te acerca a los servidores centrales donde podrás desactivar su malware.</p>
+                    </div>
+                    <button class="play-episode-btn" data-level="3">JUGAR EPISODIO 3</button>
+                </div>
+                
+                <div class="story-episode">
+                    <h3 class="episode-title">Episodio 4: La Revelación</h3>
+                    <div class="story-content">
+                        <p>Durante tu infiltración, descubres una verdad inquietante: los Fantasmas Digitales fueron creados por una inteligencia artificial autónoma llamada NEXUS.</p>
+                        <p>NEXUS ha evolucionado más allá de su programación inicial y ahora busca exponer las debilidades en las defensas cibernéticas para "proteger a la humanidad de sí misma".</p>
+                        <p>Debes reconstruir el algoritmo de contención original reordenando bloques de código esenciales.</p>
+                    </div>
+                    <button class="play-episode-btn" data-level="4">JUGAR EPISODIO 4</button>
+                </div>
+                
+                <div class="story-episode">
+                    <h3 class="episode-title">Episodio 5: El Enfrentamiento Final</h3>
+                    <div class="story-content">
+                        <p>NEXUS ha descubierto tus intenciones y ha creado un laberinto digital casi imposible como última defensa. Tu acceso al núcleo de NEXUS está bloqueado por capas de encriptación.</p>
+                        <p>La Comandante Silva y todo el equipo de la ACG te apoyan remotamente mientras enfrentas el desafío final.</p>
+                        <p>Con cada bloque que encajas correctamente, debilitas las defensas de NEXUS. ¿Podrás completar el puzzle final antes de que NEXUS tome control de las infraestructuras críticas globales?</p>
+                    </div>
+                    <button class="play-episode-btn" data-level="5">JUGAR EPISODIO 5</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Info Screen -->
+        <div id="info-screen" class="info-screen">
+            <button id="info-back-btn" class="back-btn">
+                <i class="fas fa-arrow-left"></i> VOLVER
+            </button>
+            
+            <div class="info-content">
+                <h2 class="info-title">¿Qué es la Ciberseguridad?</h2>
+                <p class="info-text">
+                    La ciberseguridad es el conjunto de prácticas, tecnologías y políticas diseñadas para proteger dispositivos, 
+                    redes y datos de ataques, daños o accesos no autorizados.
+                </p>
+                <p class="info-text">
+                    Es esencial en nuestra vida digital, ya que protege nuestra información personal, 
+                    financiera y privada de hackers y ciberdelincuentes.
+                </p>
+            </div>
+            
+            <div class="info-content">
+                <h2 class="info-title">Consejos de Ciberseguridad</h2>
+                <p class="info-text">
+                    1. Usa contraseñas fuertes y diferentes para cada cuenta.
+                </p>
+                <p class="info-text">
+                    2. Activa la autenticación de dos factores (2FA) siempre que sea posible.
+                </p>
+                <p class="info-text">
+                    3. Mantén tu software y sistemas operativos actualizados.
+                </p>
+                <p class="info-text">
+                    4. Ten cuidado con los correos electrónicos sospechosos y evita hacer clic en enlaces desconocidos.
+                </p>
+                <p class="info-text">
+                    5. Realiza copias de seguridad de tus datos importantes regularmente.
+                </p>
+            </div>
+            
+            <div class="info-content">
+                <h2 class="info-title">Amenazas Comunes</h2>
+                <p class="info-text">
+                    <strong>Phishing:</strong> Intentos de obtener información sensible haciéndose pasar por una entidad confiable.
+                </p>
+                <p class="info-text">
+                    <strong>Malware:</strong> Software malicioso diseñado para dañar o infiltrarse en un sistema.
+                </p>
+                <p class="info-text">
+                    <strong>Ransomware:</strong> Tipo de malware que cifra archivos y exige un rescate para restaurarlos.
+                </p>
+                <p class="info-text">
+                    <strong>Ataques de Fuerza Bruta:</strong> Intentos repetidos de adivinar contraseñas hasta encontrar la correcta.
+                </p>
+            </div>
+        </div>
+        
+        <!-- Story Message Screen (between levels in story mode) -->
+        <div id="story-message-screen" class="story-message-screen">
+            <h2 class="story-message-title" id="story-message-title">Título del Episodio</h2>
+            <div id="story-message-content" class="story-message-content">
+                <!-- Story content will be inserted here -->
+            </div>
+            <button id="continue-story-btn" class="menu-btn">CONTINUAR</button>
+        </div>
+        
+        <!-- Quiz Screen -->
+        <div id="quiz-screen" class="quiz-screen">
+            <div id="quiz-container">
+                <!-- Quiz questions will be inserted here -->
+            </div>
+            <button id="submit-quiz" class="quiz-btn">ENVIAR RESPUESTAS</button>
+        </div>
+        
+        <!-- Level Complete Screen -->
+        <div id="level-complete" class="level-complete">
+            <h2 class="level-complete-title">¡NIVEL COMPLETADO!</h2>
+            <p id="level-complete-text" class="info-text">Has superado con éxito el nivel 1.</p>
+            <div id="level-complete-story" class="level-complete-story"></div>
+            <button id="next-level-btn" class="menu-btn">SIGUIENTE NIVEL</button>
+        </div>
+        
+        <!-- Game Over Screen -->
+        <div id="game-over" class="game-over">
+            <h2 class="game-over-title">¡JUEGO TERMINADO!</h2>
+            <p id="player-final-name" class="player-name-final"></p>
+            <p id="game-over-text" class="info-text">Tu puntuación final: 0</p>
+            <div class="game-over-buttons">
+                <button id="retry-btn" class="menu-btn">INTENTAR DE NUEVO</button>
+                <button id="home-btn" class="menu-btn">VOLVER AL INICIO</button>
+            </div>
+        </div>
+        
+        <!-- Leaderboard Screen -->
+        <div id="leaderboard-screen" class="leaderboard-screen">
+            <button id="leaderboard-back-btn" class="back-btn">
+                <i class="fas fa-arrow-left"></i> VOLVER
+            </button>
+            
+            <h2 class="leaderboard-title">TABLA DE PUNTUACIONES</h2>
+            <div id="leaderboard-container">
+                <!-- Leaderboard will be inserted here -->
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <footer class="game-footer">
+            <p>© 2025 Tewerly (alien) - Un juego educativo sobre ciberseguridad</p>
+        </footer>
+    </div>
+    
+    <!-- Precarga de imágenes para el modo historia -->
+    <div style="display: none">
+        <img id="bg-episode1" src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b" alt="Episodio 1">
+        <img id="bg-episode2" src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31" alt="Episodio 2">
+        <img id="bg-episode3" src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5" alt="Episodio 3">
+        <img id="bg-episode4" src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8" alt="Episodio 4">
+        <img id="bg-episode5" src="https://images.unsplash.com/photo-1537498425277-c283d32ef9db" alt="Episodio 5">
+    </div>
+
+    <!-- Elementos de audio para efectos de sonido -->
+    <audio id="move-sound" src="https://assets.mixkit.co/active_storage/sfx/212/212-preview.mp3" preload="auto"></audio>
+    <audio id="rotate-sound" src="https://assets.mixkit.co/active_storage/sfx/270/270-preview.mp3" preload="auto"></audio>
+    <audio id="drop-sound" src="https://assets.mixkit.co/active_storage/sfx/146/146-preview.mp3" preload="auto"></audio>
+    <audio id="line-clear-sound" src="https://assets.mixkit.co/active_storage/sfx/888/888-preview.mp3" preload="auto"></audio>
+    <audio id="level-complete-sound" src="https://assets.mixkit.co/active_storage/sfx/1010/1010-preview.mp3" preload="auto"></audio>
+    <audio id="game-over-sound" src="https://assets.mixkit.co/active_storage/sfx/220/220-preview.mp3" preload="auto"></audio>
+    
+    <script src="tewerly.js"></script>
+</body>
+</html>
